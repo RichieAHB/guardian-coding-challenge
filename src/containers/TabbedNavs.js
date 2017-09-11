@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
+import PropTypes from 'prop-types';
 import { removeFirst } from '../utils/ArrayUtils';
 import { searchSection } from '../utils/WebAPIUtils';
+import * as Tabs from '../components/Tabs';
 
 export default class TabbedNavs extends Component {
   constructor(props) {
@@ -25,7 +27,17 @@ export default class TabbedNavs extends Component {
 
   render() {
     return (
-      <div>Hello world</div>
+      <Tabs.Container>
+        <Tabs.Tab id="test" label="Test" />
+      </Tabs.Container>
     );
   }
 }
+
+TabbedNavs.defaultProps = {
+  sections: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    zone: PropTypes.string.isRequired,
+  }).isRequired,
+};
