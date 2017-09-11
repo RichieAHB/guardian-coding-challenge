@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h, Component, cloneElement } from 'preact';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import TabButton from '../TabButton';
@@ -10,45 +10,49 @@ export default class Container extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props.children[0].attributes.id);
-
     this.state = {
       selectedId: props.children[0].attributes.id,
     };
   }
 
-  select(id) {
+  componentDidMount() {
+    this.tabButtons[Object.keys(this.tabButtons)[0]].select();
+  }
 
+  select(id, cb) {
+    this.setState({
+      selectedId: id,
+    }, () => cb(id));
   }
 
   render({ children }, { selectedId }) {
-    this.tabs = {};
+    this.tabButtons = {};
 
     return (
       <div>
         <nav>
           <ul role="tablist">
-            {children.map(({ attributes: { id, label } }) => h(
+            {children.map(({ attributes: { id, label, onClick = () => {} } }) => h(
               TabButton,
               {
-                onClick: () => this.select(id),
+                onClick: () => {
+                  this.select(id, onClick);
+                },
                 label,
                 selected: id === selectedId,
+                ref: (node) => { this.tabButtons[id] = node; },
               },
             ))}
           </ul>
         </nav>
         <div>
-          {children.map(child => {
-            <div
-              className={cx({
-                active: child.attributes.id === selectedId
+          {children.map(child => (
+            <div role="tabpanel">
+              {cloneElement(child, {
+                active: child.attributes.id === selectedId,
               })}
-              role="tabpanel"
-            >
-              {child}
             </div>
-          })}
+          ))}
         </div>
       </div>
     );
