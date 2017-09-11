@@ -1,5 +1,27 @@
+.container {
+  background-color: #fff;
+  border: 2px solid #f3f4ee;
+}
+
+.tablist {
+  margin: 0;
+  padding: 0;
+}
+
 .tabpanel {
 	display: none;
+}
+
+.nav {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
 }
 
 .active {

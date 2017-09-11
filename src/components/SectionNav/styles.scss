@@ -1,0 +1,36 @@
+.list {
+  border-top: none;
+  counter-reset: list;
+  font-size: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0 1em;
+}
+
+.item {
+  border-top: 1px solid #eee;
+  counter-increment: list;
+  line-height: 1.5;
+  padding: 0.5em 0 0.75em;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.link {
+  color: #333;
+  display: block;
+  text-decoration: none;
+
+  &:before {
+    color: #888;
+    content: counter(list);
+    font-size: 0.875em;
+    margin-right: 0.5em;
+  }
+
+  &:hover {
+    color: #666;
+  }
+}

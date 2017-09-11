@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import styles from './styles.scss';
 
 const SectionNav = ({ items, zone }) => (
   <nav
@@ -8,10 +9,10 @@ const SectionNav = ({ items, zone }) => (
       [`zone-${zone}`]: zone,
     })}
   >
-    <ul>
+    <ul className={styles.list}>
       {items.map(({ webTitle, webUrl }) => (
-        <li>
-          <a href={webUrl} title={webTitle}>{webTitle}</a>
+        <li className={styles.item}>
+          <a className={styles.link} href={webUrl} title={webTitle}>{webTitle}</a>
         </li>
       ))}
     </ul>

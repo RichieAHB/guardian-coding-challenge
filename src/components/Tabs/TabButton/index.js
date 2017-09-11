@@ -10,18 +10,20 @@ export default class TabButton extends Component {
     this.props.onClick();
   }
 
-  render({ selected, onClick, label }) {
+  render({ selected, onClick, label, widthPc, zone }) {
     return (
       <button
+        style={{ width: `${widthPc}%` }}
         disabled={selected}
         role="tab"
         onClick={onClick}
         className={cx({
           tabButton: true,
           selected,
+          [`zone-${zone}`]: zone,
         })}
       >
-        {label}
+        <span className="zone-color">{label}</span>
       </button>
     );
   }
@@ -31,6 +33,7 @@ TabButton.propTypes = {
   selected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
+  widthPc: PropTypes.number.isRequired,
 };
 
 TabButton.defaultProps = {

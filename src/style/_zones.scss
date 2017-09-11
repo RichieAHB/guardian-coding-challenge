@@ -6,6 +6,7 @@ $zoneColors: (
 
 @each $zone, $color in $zoneColors {
 	.zone-#{$zone} {
+		&.zone-color,
 		.zone-color {
 			color: $color;
 		}

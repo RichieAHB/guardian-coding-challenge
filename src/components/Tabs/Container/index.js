@@ -29,23 +29,25 @@ export default class Container extends Component {
     this.tabButtons = {};
 
     return (
-      <div>
-        <nav>
-          <ul role="tablist">
-            {children.map(({ attributes: { id, label, onClick = () => {} } }) => h(
+      <div className={styles.container}>
+        <nav className={styles.nav}>
+          <ul className={styles.tablist} role="tablist">
+            {children.map(({ attributes: { id, label, zone, onClick = () => {} } }) => h(
               TabButton,
               {
                 onClick: () => {
                   this.select(id, onClick);
                 },
                 label,
+                zone,
                 selected: id === selectedId,
                 ref: (node) => { this.tabButtons[id] = node; },
+                widthPc: 100 / children.length,
               },
             ))}
           </ul>
         </nav>
-        <div>
+        <div className={styles.tabs}>
           {children.map(child => cloneElement(child, {
             active: child.attributes.id === selectedId,
           }))}

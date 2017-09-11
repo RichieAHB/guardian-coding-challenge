@@ -4,6 +4,7 @@ import SectionNav from '../components/SectionNav';
 import { removeFirst } from '../utils/ArrayUtils';
 import { searchSection } from '../utils/WebAPIUtils';
 import * as Tabs from '../components/Tabs';
+import Loader from '../components/Loader';
 
 export default class TabbedNavs extends Component {
   constructor(props) {
@@ -31,14 +32,14 @@ export default class TabbedNavs extends Component {
     return (
       <Tabs.Container>
         {sections.map(({ id, label, zone }) => (
-          <Tabs.Tab id={id} label={label} onClick={this.onSelect}>
+          <Tabs.Tab id={id} label={label} zone={zone} onClick={this.onSelect}>
             {state[id] ?
               (
                 <div>
                   <SectionNav items={state[id]} zone={zone} />
                 </div>
               ) : (
-                <div>Loader</div>
+                <Loader />
               )
             }
           </Tabs.Tab>
