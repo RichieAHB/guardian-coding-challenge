@@ -30,12 +30,12 @@ export default class TabbedNavs extends Component {
   render({ sections }, state) {
     return (
       <Tabs.Container>
-        {sections.map(({ id, label }) => (
+        {sections.map(({ id, label, zone }) => (
           <Tabs.Tab id={id} label={label} onClick={this.onSelect}>
             {state[id] ?
               (
                 <div>
-                  <SectionNav items={state[id]} />
+                  <SectionNav items={state[id]} zone={zone} />
                 </div>
               ) : (
                 <div>Loader</div>

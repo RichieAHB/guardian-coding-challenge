@@ -1,8 +1,13 @@
 import { h } from 'preact';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
-const SectionNav = ({ items }) => (
-  <nav>
+const SectionNav = ({ items, zone }) => (
+  <nav
+    className={cx({
+      [`zone-${zone}`]: zone,
+    })}
+  >
     <ul>
       {items.map(({ webTitle, webUrl }) => (
         <li>
@@ -18,10 +23,12 @@ SectionNav.propTypes = {
     webTitle: PropTypes.string.isRequired,
     webUrl: PropTypes.string.isRequired,
   })),
+  zone: PropTypes.string,
 };
 
 SectionNav.defaultProps = {
   items: [],
+  zone: null,
 };
 
 export default SectionNav;

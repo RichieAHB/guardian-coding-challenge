@@ -1,0 +1,13 @@
+$zoneColors: (
+	sport: #008000,
+	travel: #066EC9,
+	news: #D61D00,
+);
+
+@each $zone, $color in $zoneColors {
+	.zone-#{$zone} {
+		.zone-color {
+			color: $color;
+		}
+	}
+}

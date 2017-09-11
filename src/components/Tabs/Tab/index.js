@@ -8,6 +8,7 @@ const cx = classNames.bind(styles);
 // Just an element for a more consistent API;
 const Tab = ({ children, active }) => (
   <div
+    role="tabpanel"
     className={cx({
       tab: true,
       active,
@@ -22,7 +23,6 @@ Tab.propTypes = {
   active: PropTypes.bool,
   onClick: PropTypes.func,
   id: PropTypes.string.isRequired,
-  zone: PropTypes.string,
 };
 
 Tab.defaultProps = {

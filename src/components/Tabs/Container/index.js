@@ -46,13 +46,9 @@ export default class Container extends Component {
           </ul>
         </nav>
         <div>
-          {children.map(child => (
-            <div role="tabpanel">
-              {cloneElement(child, {
-                active: child.attributes.id === selectedId,
-              })}
-            </div>
-          ))}
+          {children.map(child => cloneElement(child, {
+            active: child.attributes.id === selectedId,
+          }))}
         </div>
       </div>
     );
