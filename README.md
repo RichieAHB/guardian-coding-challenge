@@ -1,5 +1,7 @@
 # Guardian Tabs
 
+Commit 93a9036 was the commit just after two hours of work, the commits after that contain a CORS shim for IE9 and a missing reset for the margin on a button in Safari.
+
 ## Instructions
 
 `npm install && npm run serve`
