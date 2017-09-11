@@ -3,21 +3,23 @@ import { queryStringFromObject } from './URIUtils';
 // TODO: handle failures!
 
 // TODO: provide this through other means!
-const API_URL = 'https://content.guardianapis.com';
+const API_URL = '//content.guardianapis.com';
 const API_KEY = '9wur7sdh84azzazdt3ye54k4';
 
-const compatFetch = (uri) => {
+const compatGet = (uri) => {
   // TODO: check actually XDomain!
 
-  if (!window.fetch && window.XDomainRequest) {
+  if (window.XDomainRequest) {
     return new Promise((resolve) => {
       const xdr = new XDomainRequest();
 
-      xdr.open(uri);
+      xdr.open('get', uri);
 
       xdr.onload = () => {
-        resolve(xdr.responseText());
+        resolve(JSON.parse(xdr.responseText));
       };
+
+      setTimeout(() => xdr.send());
     });
   }
 
@@ -28,8 +30,8 @@ const compatFetch = (uri) => {
 // TODO: catch errors
 const contentAPIQuery = (path, queryObj) => {
   const queryString = queryStringFromObject(queryObj);
-  const uri = `${API_URL}${path}${queryString}`;
-  return compatFetch(uri);
+  const uri = `${window.location.protocol}${API_URL}${path}${queryString}`;
+  return compatGet(uri);
 };
 
 const search = (options = {}) =>

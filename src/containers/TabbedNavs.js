@@ -17,13 +17,14 @@ export default class TabbedNavs extends Component {
     this.state = {};
   }
 
-  async onSelect(id) {
+  onSelect(id) {
     if (!this.state[id] && this.loadingIDs.indexOf(id) === -1) {
       this.loadingIds = this.loadingIDs.concat([id]);
-      const { response: { results } } = await searchSection(id);
-      this.loadingIDs = removeFirst(this.loadingIDs, id);
-      this.setState({
-        [id]: results,
+      searchSection(id).then(({ response: { results } }) => {
+        this.loadingIDs = removeFirst(this.loadingIDs, id);
+        this.setState({
+          [id]: results,
+        });
       });
     }
   }
