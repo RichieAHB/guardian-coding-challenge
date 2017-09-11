@@ -23,7 +23,22 @@ export default class TabButton extends Component {
           [`zone-${zone}`]: zone,
         })}
       >
-        <span className="zone-color">{label}</span>
+        <span
+          className={cx({
+            'zone-color': true,
+            [styles.icon]: true,
+          })}
+        >
+          {label.split('')[0]}
+        </span>
+        <span
+          className={cx({
+            'zone-color': true,
+            [styles.text]: true,
+          })}
+        >
+          {label}
+        </span>
       </button>
     );
   }

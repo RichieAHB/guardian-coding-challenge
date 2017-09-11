@@ -1,6 +1,6 @@
 .tabButton {
   appearance: none;
-  background-color: #f3f4ee;
+  background-color: #eef4f3;
   border: none;
   cursor: pointer;
   display: block;
@@ -10,9 +10,13 @@
 
   &:hover,
   &:focus {
-    background-color: lighten(#f3f4ee, 2%);
+    background-color: lighten(#eef4f3, 2%);
     outline: none;
   }
+}
+
+.text {
+  display: none;
 }
 
 .selected {
@@ -22,5 +26,15 @@
 
   &:hover {
     background-color: transparent;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .text {
+    display: block;
+  }
+
+  .icon {
+    display: none;
   }
 }
